@@ -35,7 +35,7 @@ ssh_path = '/home/pi/tmp'
 #api url
 weather_url = 'http://wthrcdn.etouch.cn/weather_mini?citykey=101010100'
 gif_url ='http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC'
-joke_url = 'https://api.chucknorris.io/jokes/random'
+joke_url = 'http://api.icndb.com/jokes/random/'
 
 def get_weather():
     reg = r'[\u4E00-\u9FA5 ]'
@@ -113,8 +113,8 @@ def get_random_joke():
         return 'get random joke failed, please try again later...'
 
     if res.getcode() == 200:
-        json_data = json.loads(res.read())
-        logging.info(json_data)
-        return json_data['value']
+        json_data = json.loads(res.read().decode('utf-8'))
+        if json_data['type'] == 'success':
+            return json_data['value']['joke']
 
     return 'get random joke failed, please try again later...'
