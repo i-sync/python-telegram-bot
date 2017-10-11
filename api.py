@@ -37,14 +37,19 @@ def command_process(bot, update):
             bot.send_video(chat_id=update.message.chat_id, video = url)
     elif text.startswith('/joke'):
         bot.send_message(chat_id=update.message.chat_id, text= common.get_random_joke())
-    #elif text.startswith('/me'):
-    #   bot.send_message(chat_id=update.message.chat_id, text= bot.get_me() )
+    #elif text.startswith('/message'):
+    #    bot.send_message(chat_id=update.message.chat_id, text = json.dumps(update.message))
+    #    logging.info(update.message)
+    elif text.startswith('/me'):
+        bot_obj = bot.get_me()
+        bot_info = {'id': bot_obj.id, 'username': bot_obj.username, 'first_name': bot_obj.first_name, 'last_name': bot_obj.last_name, 'type': bot_obj.type}
+        bot.send_message(chat_id=update.message.chat_id, text= json.dumps(bot_info))
     else:
         bot.send_message(chat_id= update.message.chat_id, text = 'sorry, i can\'t understand what\'s your mean...')
 
 
 def text_process(bot, update):
-    logging.info(update.message.text)
+    logging.info(update.message)
     #print(update.message.text)
     bot.send_message(chat_id= update.message.chat_id, text = update.message.text)
 
@@ -63,8 +68,10 @@ def photo_process(bot, update):
 def audio_process(bot, update):
     audio = update.message.audio if update.message.audio else update.message.voice
     file = bot.get_file(audio.file_id)
+    #logging.info(file)
 
-    filename = '{}-{}.{}'.format(datetime.today().strftime('%Y%m%d-%H%M%S'), audio.file_id, file.file_path.split('.')[-1])
+    #filename = '{}-{}.{}'.format(datetime.today().strftime('%Y%m%d-%H%M%S'), audio.file_id, file.file_path.split('.')[-1])
+    filename = '{}-{}.oga'.format(datetime.today().strftime('%Y%m%d-%H%M%S'), audio.file_id)
     filepath = '{}/{}'.format(common.voice_path, filename)
     #print(filepath, file.file_path)
     with open(filepath, 'wb') as f:
