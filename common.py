@@ -1,5 +1,6 @@
 #!/usr/lib/env python
 
+import os.path
 import urllib.request
 import urllib.error
 import logging
@@ -8,9 +9,10 @@ import gzip
 import re
 from io import BytesIO
 
+root_path = os.path.dirname(os.path.abspath(__file__))
 #file path
-voice_path = 'files/voice'
-photo_path = 'files/photo'
+voice_path = os.path.join(root_path, 'files/voice')
+photo_path = os.path.join(root_path, 'files/photo')
 
 #synchronized bot
 token = '317386823:xxxxxxxx'

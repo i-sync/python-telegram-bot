@@ -8,8 +8,10 @@ import json
 import common
 from datetime import datetime
 import sync
+import os.path
 
-logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
+
+logging.basicConfig(filename = os.path.join(common.root_path, 'log'), format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 
 
 req = telegram.utils.request.Request(proxy_url= common.proxy)
