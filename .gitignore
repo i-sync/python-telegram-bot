@@ -1,5 +1,6 @@
 *.pyc
 .idea/
-files/
+*.oga
+!ignore.txt
 .vscode/
 .vs/
