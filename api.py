@@ -44,7 +44,7 @@ def command_process(bot, update):
     #    logging.info(update.message)
     elif text.startswith('/me'):
         bot_obj = bot.get_me()
-        bot_info = {'id': bot_obj.id, 'username': bot_obj.username, 'first_name': bot_obj.first_name, 'last_name': bot_obj.last_name, 'type': bot_obj.type}
+        bot_info = {'id': bot_obj.id, 'username': bot_obj.username, 'first_name': bot_obj.first_name, 'last_name': bot_obj.last_name} #, 'type': bot_obj.type}
         bot.send_message(chat_id=update.message.chat_id, text= json.dumps(bot_info))
     else:
         bot.send_message(chat_id= update.message.chat_id, text = 'sorry, i can\'t understand what\'s your mean...')

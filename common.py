@@ -62,7 +62,7 @@ def get_weather():
     if (status == 1000):
         wdata = json_data['data']
         city = wdata['city']
-        aqi = int(wdata['aqi'])
+        #aqi = int(wdata['aqi'])
         temperature = wdata['wendu']
         forecast = wdata['forecast'][0]
         date = forecast['date']
@@ -71,6 +71,7 @@ def get_weather():
         direction = forecast['fengxiang']
         high = re.sub(reg, '', forecast['high'])
         low = re.sub(reg, '', forecast['low'])
+        '''
         level = ''
         if (aqi <= 50 and aqi > 0):
             level = '优秀'
@@ -82,7 +83,8 @@ def get_weather():
             level = '很差'
         else:
             level = '很差'
-        return '{},今天是{} {}, 空气质量:{}{},当前温度{}[{} ~ {} ],{}{}.'.format(city, date, weather, aqi, level, temperature, low,
+        '''
+        return '{},今天是{} {}, 当前温度{}[{} ~ {} ],{}{}.'.format(city, date, weather, temperature, low,
                                                                       high, direction, wind)
     else:
         return 'get weather data failed, please try again later...'
